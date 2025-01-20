@@ -49,12 +49,16 @@ if '--contrib' in sys.argv:
     exclude_dir=[]
     sys.argv.remove('--contrib')
 
+with open("requirements.txt") as f:
+    requirements = f.read().splitlines()
+
 setup(
-    name='torch2trt',
-    version='0.5.0',
-    description='An easy to use PyTorch to TensorRT converter',
+    name="torch2trt",
+    version="0.5.0",
+    description="An easy to use PyTorch to TensorRT converter",
     packages=find_packages(exclude=exclude_dir),
-    ext_package='torch2trt',
+    install_requires=requirements,
+    ext_package="torch2trt",
     ext_modules=ext_modules,
-    cmdclass={'build_ext': BuildExtension}
+    cmdclass={"build_ext": BuildExtension},
 )
